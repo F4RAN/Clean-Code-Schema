@@ -46,3 +46,12 @@ e.g. save(user) or findById(id)
 
 > *Ports (Repositories)* in fact are an interface between the *Usecases* and *Entities*
 
+---
+
+### 3) Infrastructure
+
+*MongoUserRepository* in fact implements the UserRepository methods. The *UserRepository* specifies **WHAT to do** and *MongoUserRepository* specifies **HOW to do it with MongoDB**.
+
+> You can swap MongoDB for PostgreSQL, MySQL, or an in-memory store without causing any change in application or domain layer.
+---
+

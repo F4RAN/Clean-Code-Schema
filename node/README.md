@@ -69,3 +69,9 @@ e.g. save(user) or findById(id)
 4) Pass the *CreateUser* UseCase to the *createUserController*
 5) Controller execute the UseCase
 
+---
+
+
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/6e030a90-98a8-4a22-95c2-4a32dbed8865" />
+
+

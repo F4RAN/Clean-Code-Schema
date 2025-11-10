@@ -1,5 +1,6 @@
 export default class Age{
-    constructor(public value: number) {
+    readonly value: number;
+    constructor(value: number) {
         if (!Number.isInteger(value)) {
             throw new Error("Age must be an integer")
         }

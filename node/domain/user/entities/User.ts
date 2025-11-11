@@ -1,8 +1,8 @@
-import ID from './ID'
-import Sex from './Sex'
-import PhoneNumber from './PhoneNumber'
-import Role from './Role'
-import Age from './Age'
+import ID from '../value_objects/ID'
+import Sex from '../value_objects/Sex'
+import PhoneNumber from '../value_objects/PhoneNumber'
+import Role from '../value_objects/Role'
+import Age from '../value_objects/Age'
 export default class User {
     id: ID;
     phoneNumber: PhoneNumber;

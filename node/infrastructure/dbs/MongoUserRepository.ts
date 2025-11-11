@@ -1,7 +1,7 @@
 import { Db } from "mongodb";
-import { UserRepository } from "../application/ports/UserRepository";
-import ID from "../domain/user/value_objects/ID";
-import User from "../domain/user/entities/User";
+import { UserRepository } from "../../application/ports/UserRepository";
+import ID from "../../domain/user/value_objects/ID";
+import User from "../../domain/user/entities/User";
 
 export class MongoUserRepository implements UserRepository{
     private collection: any;

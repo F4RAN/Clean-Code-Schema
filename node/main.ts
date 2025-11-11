@@ -1,5 +1,5 @@
 import express from "express";
-import { MongoUserRepository } from "./infrastructure/MongoUserRepository";
+import { MongoUserRepository } from "./infrastructure/dbs/MongoUserRepository.js";
 import { CreateUser } from "./application/usecases/CreateUser";
 import { createUserController } from "./presentation/http/CreateUserController.js";
 import { getMongoClient } from "./config/db.js";

@@ -1,5 +1,5 @@
-import User from "../../domain/user/User";
-import ID from "../../domain/user/ID";
+import User from "../../domain/user/entities/User";
+import ID from "../../domain/user/value_objects/ID";
 
 export interface UserRepository{
     save(user: User): Promise<void>;

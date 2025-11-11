@@ -1,5 +1,5 @@
-import ID from "../../domain/user/ID";
-import User from "../../domain/user/User";
+import ID from "../../domain/user/value_objects/ID";
+import User from "../../domain/user/entities/User";
 import { UserRepository } from "../ports/UserRepository";
 
 export class CreateUser{

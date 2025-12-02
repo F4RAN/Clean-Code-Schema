@@ -1,5 +1,5 @@
-from python.domain.entities.user import User
-from python.domain.value_objects.id import ID
+from domain.entities.user import User
+from domain.value_objects.id import ID
 from abc import ABC, abstractmethod
 
 

@@ -73,20 +73,34 @@ All implementations share the same domain model:
 ### Prerequisites
 
 - **MongoDB** running on `localhost:27017` (or update connection strings in config files)
-- **Node.js** (for Node.js implementation) or **Python 3.9+** (for Python implementation)
 
-### One-Command Installation
+### Single Command Installation
 
-Choose your language and run:
-
-#### Node.js / TypeScript
+**Single command Node.js:**
 ```bash
-cd node && npm install && npm start
+wget -qO- https://github.com/F4RAN/Clean-Code-Schema/archive/refs/heads/main.zip && unzip -q main.zip && cd Clean-Code-Schema-main/node && bash install.sh && npm start
 ```
 
-#### Python
+**Single command Python:**
 ```bash
-cd python && pip install -r requirements.txt && uvicorn main:app --reload
+wget -qO- https://github.com/F4RAN/Clean-Code-Schema/archive/refs/heads/main.zip && unzip -q main.zip && cd Clean-Code-Schema-main/python && bash install.sh && source .venv/bin/activate && uvicorn main:app --reload
+```
+
+**Single command Rust:**
+```bash
+# Coming soon - Rust implementation in progress
+```
+
+### Alternative: Using Git Clone
+
+If you prefer using git:
+
+```bash
+# Node.js
+git clone https://github.com/F4RAN/Clean-Code-Schema.git && cd Clean-Code-Schema/node && bash install.sh && npm start
+
+# Python
+git clone https://github.com/F4RAN/Clean-Code-Schema.git && cd Clean-Code-Schema/python && bash install.sh && source .venv/bin/activate && uvicorn main:app --reload
 ```
 
 ### Detailed Setup
@@ -136,7 +150,7 @@ We welcome contributions for additional language implementations! If you'd like 
 
 To use this repository as a starting point for your project:
 
-1. **Clone or fork this repository**
+1. **Clone or fork this repository**: `git clone https://github.com/F4RAN/Clean-Code-Schema.git`
 2. **Choose your preferred language** (Node.js, Python, or wait for Rust)
 3. **Copy the implementation** to your new project
 4. **Customize the domain model** - Replace User entity and value objects with your own

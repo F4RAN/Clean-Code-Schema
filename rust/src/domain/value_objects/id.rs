@@ -14,4 +14,7 @@ impl ID{
             value: value as i32
         }
     }
+    pub fn value(&self) -> i32 {  // Add this getter
+        self.value
+    }
 }

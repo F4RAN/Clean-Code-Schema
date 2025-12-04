@@ -1,4 +1,6 @@
-enum Role{
+use serde::{Serialize, Deserialize};
+#[derive(Serialize, Deserialize)]
+pub enum Role{
     Admin,
     User,
     Guest
@@ -6,8 +8,8 @@ enum Role{
 
 
 impl Role{
-    fn new(value: String) -> Result<Role,String>{
-        match value.to_lowercase(){
+    pub fn new(value: String) -> Result<Role,String>{
+        match value.to_lowercase().as_str(){
             "admin" => Ok(Role::Admin),
             "user" => Ok(Role::User),
             "guest" => Ok(Role::Guest),

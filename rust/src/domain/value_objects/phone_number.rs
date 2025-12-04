@@ -1,9 +1,11 @@
-struct PhoneNumber{
+use serde::{Serialize, Deserialize};
+#[derive(Serialize, Deserialize)]
+pub struct PhoneNumber{
     value: String
 }
 
 impl PhoneNumber{
-    fn new(value: String) -> Result<PhoneNumber,String>{
+    pub fn new(value: String) -> Result<PhoneNumber,String>{
         if(value.len() != 10){
             Err(String::from("Phone number must be 10 characters"))
         }

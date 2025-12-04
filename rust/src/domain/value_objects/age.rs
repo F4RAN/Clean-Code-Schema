@@ -1,9 +1,10 @@
-struct Age{
+use serde::{Serialize, Deserialize};
+#[derive(Serialize, Deserialize)]
+pub struct Age{
     value: i32
 }
-
 impl Age{
-    fn new(value: i32) -> Result<Age, String>{
+    pub fn new(value: i32) -> Result<Age, String>{
         if(value > 120) {
             Err(String::from("Age can not be greater than 120"))
         }

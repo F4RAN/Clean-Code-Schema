@@ -70,6 +70,176 @@ e.g. save(user) or findById(id)
 5) Controller execute the UseCase
 
 ---
+
+## 🚀 Setup
+
+### Prerequisites
+
+- **Node.js** 18+ (or use nvm)
+- **MongoDB** running on `localhost:27017`
+
+### Installation
+
+1. Navigate to the node directory:
+```bash
+cd node
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the server:
+```bash
+npm start
+```
+
+The server will start on `http://localhost:3000`
+
+---
+
+## 🧪 Testing with cURL
+
+### Create User
+
+#### Basic Request
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": 25,
+    "sex": "male"
+  }'
+```
+
+#### One-liner
+```bash
+curl -X POST http://localhost:3000/create_user -H "Content-Type: application/json" -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"male"}'
+```
+
+#### Create Admin User
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "9876543210",
+    "role": "admin",
+    "age": 30,
+    "sex": "female"
+  }'
+```
+
+#### Create Guest User
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "5555555555",
+    "role": "guest",
+    "age": 18,
+    "sex": "male"
+  }'
+```
+
+### Validation Error Examples
+
+#### Invalid Phone Number (not 10 digits)
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "123",
+    "role": "user",
+    "age": 25,
+    "sex": "male"
+  }'
+```
+**Expected Response:** `400 Bad Request`
+
+#### Invalid Age (over 120)
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": 150,
+    "sex": "male"
+  }'
+```
+**Expected Response:** `400 Bad Request`
+
+#### Invalid Age (negative)
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": -5,
+    "sex": "male"
+  }'
+```
+**Expected Response:** `400 Bad Request`
+
+#### Invalid Role
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "invalid_role",
+    "age": 25,
+    "sex": "male"
+  }'
+```
+**Expected Response:** `400 Bad Request`
+
+#### Invalid Sex
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": 25,
+    "sex": "invalid"
+  }'
+```
+**Expected Response:** `400 Bad Request`
+
+#### Phone Number with Non-Digit Characters
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "123456789a",
+    "role": "user",
+    "age": 25,
+    "sex": "male"
+  }'
+```
+**Expected Response:** `400 Bad Request`
+
+### Pretty Print Response (with jq)
+
+If you have `jq` installed, you can pretty-print the JSON response:
+
+```bash
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": 25,
+    "sex": "male"
+  }' | jq .
+```
+
+---
 CC Architecture
 
 <img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/6e030a90-98a8-4a22-95c2-4a32dbed8865" />

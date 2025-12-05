@@ -87,9 +87,9 @@ wget -qO- https://raw.githubusercontent.com/F4RAN/Clean-Code-Schema/main/bootstr
 wget -qO- https://raw.githubusercontent.com/F4RAN/Clean-Code-Schema/main/bootstrap-python.sh | bash
 ```
 
-**Single command Rust:**
+**Single command Rust (using wget):**
 ```bash
-cd rust && cargo run
+wget -qO- https://raw.githubusercontent.com/F4RAN/Clean-Code-Schema/main/bootstrap-rust.sh | bash
 ```
 
 ### Alternative: Using Git Sparse-Checkout
@@ -102,11 +102,15 @@ git clone --filter=blob:none --sparse https://github.com/F4RAN/Clean-Code-Schema
 
 # Python
 git clone --filter=blob:none --sparse https://github.com/F4RAN/Clean-Code-Schema.git && cd Clean-Code-Schema && git sparse-checkout init --cone && git sparse-checkout set python && cd python && bash install.sh
+
+# Rust
+git clone --filter=blob:none --sparse https://github.com/F4RAN/Clean-Code-Schema.git && cd Clean-Code-Schema && git sparse-checkout init --cone && git sparse-checkout set rust && cd rust && bash install.sh
 ```
 
 **Note:** After installation, you can customize the code before running. To start the server:
-- **Node.js**: `npm start`
-- **Python**: `source .venv/bin/activate && uvicorn main:app --reload`
+- **Node.js**: `npm start` (runs on port 3000)
+- **Python**: `source .venv/bin/activate && uvicorn main:app --reload` (runs on port 8000)
+- **Rust**: `cargo run` (runs on port 3000)
 
 ### Detailed Setup
 
@@ -115,6 +119,133 @@ Each language implementation has its own README with detailed setup instructions
 - [Node.js Setup Guide](./node/README.md)
 - [Python Setup Guide](./python/README.md)
 - [Rust Setup Guide](./rust/README.md)
+
+## 🧪 Testing
+
+All implementations expose the same API endpoint and can be tested using the same curl commands. The only difference is the port number:
+
+- **Node.js**: `http://localhost:3000`
+- **Python**: `http://localhost:8000` (FastAPI default)
+- **Rust**: `http://localhost:3000`
+
+### Create User
+
+#### Basic Request
+```bash
+# Node.js or Rust (port 3000)
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": 25,
+    "sex": "male"
+  }'
+
+# Python (port 8000)
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "1234567890",
+    "role": "user",
+    "age": 25,
+    "sex": "male"
+  }'
+```
+
+#### One-liner
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user -H "Content-Type: application/json" -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"male"}'
+
+# Python
+curl -X POST http://localhost:8000/create_user -H "Content-Type: application/json" -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"male"}'
+```
+
+#### Create Admin User
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"9876543210","role":"admin","age":30,"sex":"female"}'
+
+# Python
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"9876543210","role":"admin","age":30,"sex":"female"}'
+```
+
+### Validation Error Examples
+
+All implementations return `400 Bad Request` for validation errors:
+
+#### Invalid Phone Number (not 10 digits)
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"123","role":"user","age":25,"sex":"male"}'
+
+# Python
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"123","role":"user","age":25,"sex":"male"}'
+```
+
+#### Invalid Age (over 120)
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"user","age":150,"sex":"male"}'
+
+# Python
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"user","age":150,"sex":"male"}'
+```
+
+#### Invalid Role
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"invalid_role","age":25,"sex":"male"}'
+
+# Python
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"invalid_role","age":25,"sex":"male"}'
+```
+
+#### Invalid Sex
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"invalid"}'
+
+# Python
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"invalid"}'
+```
+
+### Pretty Print Response (with jq)
+
+If you have `jq` installed, you can pretty-print the JSON response:
+
+```bash
+# Node.js or Rust
+curl -X POST http://localhost:3000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"male"}' | jq .
+
+# Python
+curl -X POST http://localhost:8000/create_user \
+  -H "Content-Type: application/json" \
+  -d '{"phone_number":"1234567890","role":"user","age":25,"sex":"male"}' | jq .
+```
 
 ## 🤝 Contributing
 
@@ -207,7 +338,7 @@ Wire everything together:
 - ✅ **Must keep implementation minimal and educational**
 - ✅ **Must follow language-specific best practices** and conventions
 
-**Important**: Review the existing [Node.js](./node/README.md) and [Python](./python/README.md) implementations to understand the exact pattern and story structure before contributing.
+**Important**: Review the existing [Node.js](./node/README.md), [Python](./python/README.md), and [Rust](./rust/README.md) implementations to understand the exact pattern and story structure before contributing.
 
 ### Implementation Status
 

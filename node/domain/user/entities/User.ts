@@ -11,9 +11,11 @@ export default class User {
     age: Age;
     constructor({id, phoneNumber, sex, role, age}){
         if(!id) throw new Error("User must have id")
+        this.id = id
         this.phoneNumber = phoneNumber
         this.sex = sex
         this.role = role
         this.age = age
+        
     }
 }

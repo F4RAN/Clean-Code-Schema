@@ -24,8 +24,7 @@ impl CreateUser{
             age,
             sex
         };
-        let stored_user = self.user_repo.save(user).await;
-        Ok(stored_user.unwrap())
+        self.user_repo.save(user).await
         
     }
 }

@@ -9,6 +9,6 @@ export default class PhoneNumber{
             throw new Error("Phone number must contain only digits");
         if (value.length !== 10) 
             throw new Error("Phone number length must be 10");
-
+        this.value = value
     }
 }

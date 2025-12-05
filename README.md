@@ -28,9 +28,10 @@ The goal is to help developers:
   - Database: MongoDB (PyMongo)
   - Features: Async support with sync-to-async decorator pattern (prototyping approach)
 
-### 🚧 Coming Soon
-
-- **Rust** - Implementation in progress
+- **[Rust](./rust/README.md)**
+  - Framework: Axum
+  - Database: MongoDB
+  - Features: Full async/await support with async-trait for trait objects
 
 ## 🏗️ Architecture
 
@@ -88,7 +89,7 @@ wget -qO- https://raw.githubusercontent.com/F4RAN/Clean-Code-Schema/main/bootstr
 
 **Single command Rust:**
 ```bash
-# Coming soon - Rust implementation in progress
+cd rust && cargo run
 ```
 
 ### Alternative: Using Git Sparse-Checkout
@@ -113,6 +114,7 @@ Each language implementation has its own README with detailed setup instructions
 
 - [Node.js Setup Guide](./node/README.md)
 - [Python Setup Guide](./python/README.md)
+- [Rust Setup Guide](./rust/README.md)
 
 ## 🤝 Contributing
 
@@ -211,7 +213,7 @@ Wire everything together:
 
 - [x] **Node.js / TypeScript** ✅
 - [x] **Python** ✅
-- [ ] **Rust** 🚧 (in progress)
+- [x] **Rust** ✅
 - [ ] **Go** 🐹
 - [ ] **Java** ☕
 - [ ] **C#** 🔷
@@ -229,7 +231,7 @@ Wire everything together:
 To use this repository as a starting point for your project:
 
 1. **Clone or fork this repository**: `git clone https://github.com/F4RAN/Clean-Code-Schema.git`
-2. **Choose your preferred language** (Node.js, Python, or wait for Rust)
+2. **Choose your preferred language** (Node.js, Python, or Rust)
 3. **Copy the implementation** to your new project
 4. **Customize the domain model** - Replace User entity and value objects with your own
 5. **Extend the use cases** - Add your business logic following the same patterns

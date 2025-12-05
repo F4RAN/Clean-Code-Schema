@@ -1,7 +1,7 @@
 [package]
 name = "cc-ex"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
 mongodb = "3.4.1"

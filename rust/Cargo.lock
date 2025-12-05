@@ -170,6 +170,7 @@ dependencies = [
  "axum",
  "mongodb",
  "serde",
+ "tokio",
 ]
 
 [[package]]
@@ -1635,6 +1636,7 @@ dependencies = [
  "bytes",
  "libc",
  "mio",
+ "parking_lot",
  "pin-project-lite",
  "signal-hook-registry",
  "socket2 0.6.1",

@@ -37,7 +37,7 @@ pub struct CreateUserRequest{
  */
 pub fn create_user_controller(create_user: CreateUser) -> impl Fn(Json<CreateUserRequest>) -> std::pin::Pin<Box<dyn std::future::Future<Output = Result<Json<User>, StatusCode>> + Send>> + Clone {
     // Wrap CreateUser in Arc (Atomic Reference Counted) so it can be shared
-    // This allows the closure to be called multiple times (Fn instead of FnOnce)
+    // This allows the closure to be called multiple times
     let create_user = Arc::new(create_user);
     
     // This closure is what Axum will call when a request comes in

@@ -11,7 +11,7 @@ pub struct CreateUser{
     user_repo:  Box<dyn UserRepository + Send + Sync>
 }
 impl CreateUser{
-    fn new(user_repo: Box<dyn UserRepository + Send + Sync>) -> CreateUser{
+    pub fn new(user_repo: Box<dyn UserRepository + Send + Sync>) -> CreateUser{
         CreateUser{
             user_repo
         }

@@ -7,7 +7,7 @@ from ..value_objects.role import Role
 
 class User:
     def __init__(self, uid: ID, phone_number: PhoneNumber, sex: Sex, role: Role, age: Age):
-        self.id: ID = ID()
+        self.id: ID = uid
         self.phone_number: PhoneNumber = phone_number
         self.sex: Sex = sex
         self.role: Role = role

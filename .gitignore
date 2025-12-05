@@ -2,3 +2,4 @@
 **__pycache__**
 **node_modules
 rust/target/*
+node/node_modules

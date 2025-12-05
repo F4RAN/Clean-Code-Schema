@@ -1,8 +1,9 @@
+import uuid
+
 class ID:
-    _counter = 0
     def __init__(self):
-        ID._counter += 1
-        self._value = ID._counter
-
-
+        self._value = str(uuid.uuid4())
     
+    @property
+    def value(self):
+        return self._value

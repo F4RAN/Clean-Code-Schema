@@ -383,3 +383,10 @@ This repository is designed to help developers learn Clean Architecture principl
 
 **Happy Learning & Building! 🎓🚀**
 
+
+
+
+[Medium Doc](https://medium.com/@parsa.hassani30/clean-architecture-across-languages-why-the-epuic-sequence-changes-everything-d66b70bcffa5)
+[Linkedin Post](https://www.linkedin.com/posts/f4ran_github-f4rancc-ex-activity-7402686889226559488-OiJ7https://medium.com/@parsa.hassani30/clean-architecture-across-languages-why-the-epuic-sequence-changes-everything-d66b70bcffa5/)
+
+
